@@ -66,7 +66,7 @@ Note that after updating instructions, it may take up to 5 minutes for the new i
 
 #### Example: Education data classification & grading guidance (CN)
 
-If your organization follows the education data classification & grading guidance, you can provide custom instructions to help the model tag managed databases according to the rules. The example below maps assets into education data categories and grades, and requests labels for both (classification and grading) when creating glossary term suggestions.
+If your organization follows the education data classification & grading guidance, you can provide custom instructions to help the model tag managed datasets according to the rules. The example below maps assets into education data categories and grades, and requests labels for both (classification and grading) when creating glossary term suggestions. Make sure the glossary already contains the corresponding term groups (e.g., `Education Classification` and `Education Data Level`).
 
 ```text
 你是教育数据分类分级审核助手。请基于以下规则对“纳管数据库”的表与字段进行识别与打标，并输出建议的“数据分类”和“数据级别”：
@@ -89,6 +89,7 @@ If your organization follows the education data classification & grading guidanc
 输出格式（每个表/字段）：
 - 数据分类：{教育基础数据/教育业务管理数据/教育行政管理数据/学生数据/教职工数据/教学管理数据/科研管理数据/校务管理数据/其他数据}
 - 数据级别：{L5/L4/L3/L2/L1}
+- 对应术语：在“Education Classification”和“Education Data Level”术语组中匹配最合适的术语名称
 ```
 
 ## How it works
