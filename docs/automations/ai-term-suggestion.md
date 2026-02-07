@@ -64,6 +64,33 @@ To provide custom instructions for AI classification generation, simply provide 
 
 Note that after updating instructions, it may take up to 5 minutes for the new instructions to take effect.
 
+#### Example: Education data classification & grading guidance (CN)
+
+If your organization follows the education data classification & grading guidance, you can provide custom instructions to help the model tag managed databases according to the rules. The example below maps assets into education data categories and grades, and requests labels for both (classification and grading) when creating glossary term suggestions.
+
+```text
+你是教育数据分类分级审核助手。请基于以下规则对“纳管数据库”的表与字段进行识别与打标，并输出建议的“数据分类”和“数据级别”：
+
+1) 分类范围
+- 教育行政部门数据：教育基础数据、教育业务管理数据、教育行政管理数据、其他数据。
+- 学校数据：学生数据、教职工数据、教学管理数据、科研管理数据、校务管理数据、其他数据。
+- 注意：每个数据集原则上只属于一个类别，若多类冲突，就高从严。
+
+2) 分级规则
+- L5 核心数据：国家安全特别严重/严重危害；或达到极高覆盖度/超大规模。
+- L4 重要数据：国家安全一般危害或对经济运行/社会秩序/公共利益严重危害；较高覆盖度/巨大规模。
+- L3/L2/L1 一般数据：对经济运行/社会秩序/公共利益一般危害或对组织/个人权益危害（依规模与覆盖度细分）。
+
+3) 识别原则
+- 结合表名、字段名、描述、样例值、关联表等判断数据主体与业务场景。
+- 涉及个人信息/敏感个人信息（身份证号、护照号、健康、生物识别、财产等）提高级别。
+- 若数据集包含不同级别字段，按最高级别确定数据集级别。
+
+输出格式（每个表/字段）：
+- 数据分类：{教育基础数据/教育业务管理数据/教育行政管理数据/学生数据/教职工数据/教学管理数据/科研管理数据/校务管理数据/其他数据}
+- 数据级别：{L5/L4/L3/L2/L1}
+```
+
 ## How it works
 
 The automation will scan through all the datasets matched by the configured filters. For each one, it will generate suggestions.
